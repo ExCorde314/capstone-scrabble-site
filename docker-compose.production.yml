@@ -1,0 +1,7 @@
+scrabble:
+    image: excorde314/django-capstone
+    volumes:
+      -  ./scrabble:/app
+    expose:
+      - "8080"
+    command: bash -c "mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"
