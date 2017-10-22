@@ -1,7 +1,9 @@
 scrabble:
-    image: excorde314/django-capstone
+    build: .
     volumes:
       -  ./scrabble:/app
+      -  ./scrabble_decision:/scrabble_decision
     expose:
       - "8080"
-    command: bash -c "mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"
+    command: bash -c "(python2 /scrabble_decision/scrabble_server.py &) &&
+                      mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"
