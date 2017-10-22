@@ -7,6 +7,5 @@ scrabble:
       - 8000:8000
     expose:
       - 8000
-      - 80
     command: bash -c "(python2 /scrabble_decision/scrabble_server.py &) &&
-                      mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py --port=80"
+                      mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"
