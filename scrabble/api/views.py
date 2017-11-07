@@ -6,8 +6,8 @@ import zmq
 ###################
 # Response types
 ###################
-def robot_response(new_word, robot_movements):
-    return JsonResponse({"success": True, "word": new_word, "actions": robot_movements})
+def robot_response(new_word, robot_movements, move_information):
+    return JsonResponse({"success": True, "word": new_word, "actions": robot_movements, "move_information": move_information})
 
 def success_response(data):
     return JsonResponse({"success": True, "data": data})
@@ -34,7 +34,7 @@ def scrabble_ai_v1(request):
         socket.send_json({"board": board, "rack": rack})
         msg = socket.recv()
         msg = msg.decode("utf-8")
-        msg = json.loads(msg)        
+        msg = json.loads(msg)
 
         if msg["success"]:
 
@@ -48,13 +48,23 @@ def scrabble_ai_v1(request):
 
             new_word = move_information[0:space_index]
 
-            row = int(move_information[space_index+2]) - 1
-            col = int(move_information[space_index+4]) - 1
-            direction = move_information[space_index+6]
+            row = int(move_information[space_index+2])
+            move_information = move_information[space_index:]
+
+            for character in move_information:
+                if character == ' ':
+                    break
+                space_index += 1
+
+            row_index = (move_information.split(",")[0]).split("(")[1]
+            col_index = move_information.split(",")[1]
+            row = int(row_index)
+            col = int(col_index)
+            direction = move_information.split(",")[2][0]
 
             rack_dictionary = {}
             rack_index = 0
-
+            
             robot_movements = []
 
             for rack_character in rack:
@@ -65,12 +75,21 @@ def scrabble_ai_v1(request):
                 rack_index += 1
 
             for required_character in new_word:
-                board_index = (row*15) + col
-                
+                board_index = ((row*15) + col)
+
                 if board[board_index] == required_character:
+
+                    if direction == "H":
+                        col += 1
+                    else:
+                        row += 1
+
                     continue
 
-                pickup_location = rack_dictionary[required_character][0]
+                try:
+                    pickup_location = rack_dictionary[required_character][0]
+                except:
+                    return success_response(str(row) + " " + str(col) + str(required_character) + " " + str(board_index) + str(board))
                 del rack_dictionary[required_character][0]
 
                 dropoff_location = (row, col)
@@ -84,7 +103,10 @@ def scrabble_ai_v1(request):
 
 
 
-            return robot_response(new_word, str(robot_movements))
+            return robot_response(new_word, str(robot_movements), move_information)
+
+            return success_response(str(move_information) + "row: " + str(row_index) + " board: " + str(board[112]))
+
         else:
             return error_response(msg["error"])
     else:
