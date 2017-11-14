@@ -4,7 +4,7 @@ This project is for a simple django site that takes a scrabble board and a hand 
 
 ## Digital Ocean
 
-To run this application on Digital Ocean on port 8000, run clone this repository in the home directory and run this command:
+To run this application on Digital Ocean, run clone this repository in the home directory and run this command:
 
 `docker-compose -f docker-compose.production.yml up -d`
 
