@@ -18,4 +18,3 @@ To stop the application, run the following command:
 1. Scoring the words is currently different -> change to our rules
 2. If the word suggested has no connections && is not the first move -> return no solutions
   - look for other less optimal solutions which might be correct
-3. Change the interface to directly plug into the myRIO UART interface

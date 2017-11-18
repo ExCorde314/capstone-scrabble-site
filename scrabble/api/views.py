@@ -6,9 +6,9 @@ import zmq
 ###################
 # Response types
 ###################
-def robot_response(new_word, N, param1, param2, param3):
+def robot_response(new_word, N, param1, param2, param3, score):
     return JsonResponse({"success": True, "word": new_word, \
-"N": N, "param1": param1, "param2": param2, "param3": param3})
+"N": N, "param1": param1, "param2": param2, "param3": param3, "score": score})
 
 def success_response(data):
     return JsonResponse({"success": True, "data": data})
@@ -44,6 +44,9 @@ def scrabble_ai_v1(request):
             dropoff_locations_Y = []
 
             move_information = msg["data"]
+            last_space = len(move_information) - move_information.rfind(' ')
+
+            score = int(move_information[-last_space + 1:])
 
             space_index = 0
             for character in move_information:
@@ -122,7 +125,7 @@ def scrabble_ai_v1(request):
             param2 = ','.join(str(e) for e in dropoff_locations_X)
             param3 = ','.join(str(e) for e in dropoff_locations_Y)
 
-            return robot_response(new_word, N, param1, param2, param3)
+            return robot_response(new_word, N, param1, param2, param3, score)
 
         else:
             return error_response(msg["error"])

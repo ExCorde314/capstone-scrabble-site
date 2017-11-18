@@ -120,8 +120,6 @@ class Solution(object):
             # Score up the word we put down or extended.
             score += get_word_score(found_word, row, col, self.direction)
 
-        #FIXME the scoring is different than what we use and needs to be changed
-        # See if we modified a perpendicular word.
         perpendicular_direction = self.direction.get_perpendicular_direction()
         for i in range(len(self.word)):
             row, col = self.direction.increment(self.row, self.col, i)
