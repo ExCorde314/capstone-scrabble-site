@@ -6,8 +6,9 @@ import zmq
 ###################
 # Response types
 ###################
-def robot_response(new_word, robot_movements, move_information):
-    return JsonResponse({"success": True, "word": new_word, "actions": robot_movements, "move_information": move_information})
+def robot_response(new_word, N, param1, param2, param3):
+    return JsonResponse({"success": True, "word": new_word, \
+"N": N, "param1": param1, "param2": param2, "param3": param3})
 
 def success_response(data):
     return JsonResponse({"success": True, "data": data})
@@ -38,6 +39,10 @@ def scrabble_ai_v1(request):
 
         if msg["success"]:
 
+            pickup_locations = []
+            dropoff_locations_X = []
+            dropoff_locations_Y = []
+
             move_information = msg["data"]
 
             space_index = 0
@@ -64,7 +69,7 @@ def scrabble_ai_v1(request):
 
             rack_dictionary = {}
             rack_index = 0
-            
+
             robot_movements = []
 
             for rack_character in rack:
@@ -83,29 +88,41 @@ def scrabble_ai_v1(request):
                         col += 1
                     else:
                         row += 1
-
                     continue
 
                 try:
                     pickup_location = rack_dictionary[required_character][0]
+                    # Once selected for a pick up - remove that location from the dict
+                    del rack_dictionary[required_character][0]
                 except:
-                    return success_response(str(row) + " " + str(col) + str(required_character) + " " + str(board_index) + str(board))
-                del rack_dictionary[required_character][0]
+                    # THIS SHOULD NEVER HAPPEN
+                    # MEANS THAT THE REQUIRED WORD IS NOT IN THE RACK
+                    return error_response("could not find the letter in the rack")
+
 
                 dropoff_location = (row, col)
 
-                robot_movements.append((pickup_location, dropoff_location[0], dropoff_location[1]))
+                # robot_movements.append((pickup_location, dropoff_location[0], dropoff_location[1]))
+                pickup_locations.append(pickup_location)
+                dropoff_locations_X.append(dropoff_location[0])
+                dropoff_locations_Y.append(dropoff_location[1])
 
                 if direction == "H":
                     col += 1
                 else:
                     row += 1
 
+            # format pickup_locations, dropoff_locations_X, dropoff_locations_Y
+            N = len(pickup_locations)
 
+            if N == 0:
+                return error_response("no moves to make found")
 
-            return robot_response(new_word, str(robot_movements), move_information)
+            param1 = ','.join(str(e) for e in pickup_locations)
+            param2 = ','.join(str(e) for e in dropoff_locations_X)
+            param3 = ','.join(str(e) for e in dropoff_locations_Y)
 
-            return success_response(str(move_information) + "row: " + str(row_index) + " board: " + str(board[112]))
+            return robot_response(new_word, N, param1, param2, param3)
 
         else:
             return error_response(msg["error"])
