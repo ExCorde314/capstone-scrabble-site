@@ -1,1 +1,21 @@
 {"param1": "6,4,0,2,3,1,5", "score": 65, "param3": "9,9,9,9,9,9,9", "param2": "8,9,10,11,12,13,14", "success": true, "word": "ORGIASTS", "N": 7}
+{"success": false, "error": "No solution was found"}
+{"success": false, "error": "No solution was found"}
+{"success": false, "error": "Empty rack"}
+{"success": true, "N": 1, "word": "AB", "score": 4, "param1": "6", "param2": "6", "param3": "7"}
+{"success": true, "N": 1, "word": "AB", "score": 4, "param1": "3", "param2": "6", "param3": "7"}
+{"success": true, "N": 1, "word": "AB", "score": 4, "param1": "3", "param2": "7", "param3": "6"}
+{"success": true, "N": 1, "word": "AR", "score": 3, "param1": "3", "param2": "6", "param3": "8"} || {"success": true, "N": 1, "word": "AR", "score": 3, "param1": "3", "param2": "8", "param3": "6"}
+{"success": true, "N": 1, "word": "RE", "score": 6, "param1": "0", "param2": "8", "param3": "8"}
+{"success": false, "error": "No solution was found"}
+{"success": false, "error": "Invalid board or rack"}
+{"success": true, "N": 1, "word": "HELLO", "score": 9, "param1": "0", "param2": "7", "param3": "11"}
+{"success": true, "N": 1, "word": "SHELL", "score": 8, "param1": "0", "param2": "7", "param3": "6"}
+{"success": true, "N": 1, "word": "ES", "score": 3, "param1": "0", "param2": "8", "param3": "8"}
+{"success": true, "N": 1, "word": "ES", "score": 2, "param1": "0", "param2": "8", "param3": "4"} || {"success": true, "N": 1, "word": "ES", "score": 2, "param1": "0", "param2": "8", "param3": "9"}
+{"success": true, "N": 1, "word": "SMELL", "score": 7, "param1": "0", "param2": "7", "param3": "6"}
+{"success": true, "N": 1, "word": "AS", "score": 2, "param1": "0", "param2": "7", "param3": "6"} || {"success": true, "N": 1, "word": "AS", "score": 2, "param1": "0", "param2": "6", "param3": "7"}
+{"success": true, "N": 2, "word": "SHELLS", "score": 10, "param1": "0,1", "param2": "7,7", "param3": "6,11"} || {"success": true, "N": 2, "word": "SHELLS", "score": 10, "param1": "0,1", "param2": "7,7", "param3": "11,6"}
+{"success": true, "N": 1, "word": "SUNSHINE", "score": 33, "param1": "0", "param2": "7", "param3": "14"}
+{"success": true, "N": 1, "word": "SUNSHINE", "score": 11, "param1": "0", "param2": "7", "param3": "13"}
+{"success": true, "N": 1, "word": "SUNSHINE", "score": 12, "param1": "0", "param2": "7", "param3": "11"}
