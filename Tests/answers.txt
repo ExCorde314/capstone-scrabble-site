@@ -19,3 +19,6 @@
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 33, "param1": "0", "param2": "7", "param3": "14"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 11, "param1": "0", "param2": "7", "param3": "13"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 12, "param1": "0", "param2": "7", "param3": "11"}
+{"param3": "6,6,6,6,6", "param2": "6,7,8,9,10", "score": 29, "success": true, "word": "REMAP", "N": 5, "param1": "2,3,0,1,5"}
+{"success": false, "error": “Gateway Timeout Response“}
+{"success": true}
