@@ -18,3 +18,4 @@ Note: the actual website is tested (scrabblicious.com)
 5. Blank tiles to test
 6. Bingo words
 7. Creates disconnected words sometimes
+8. Website dies if too many requests are made too fast!!

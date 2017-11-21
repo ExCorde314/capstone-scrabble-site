@@ -1,6 +1,7 @@
 import urllib.request
 import json
 import operator
+import time
 
 
 tests_file = open("tests.txt", "r")
@@ -26,6 +27,7 @@ for test_case_link, answer_line in zip(tests_file, answers_file):
         print("Test " + str(count) + "\t\t" + " \033[91mFAILED\033[0m")
 
     count += 1
+    time.sleep(1) # wait in between tests 
 
 tests_file.close()
 answers_file.close()
