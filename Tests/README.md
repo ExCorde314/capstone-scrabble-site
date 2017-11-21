@@ -15,7 +15,7 @@ Note: the actual website is tested (scrabblicious.com)
   - look for other less optimal solutions which might be correct
 3. Check for connectivity
 4. Check for word extension
-5. Blank tiles to test
-6. Bingo words
+5. Blank tiles to test -> '?' -> blank tiles on board should be errors and in hand should create words
+6. Bingo words -> check score with valid board
 7. Creates disconnected words sometimes
 8. Website dies if too many requests are made too fast!!
