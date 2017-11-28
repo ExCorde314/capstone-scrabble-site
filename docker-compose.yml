@@ -6,4 +6,4 @@ scrabble:
     ports:
       - 8000:8000
     command: bash -c "(python2 /scrabble_decision/scrabble_server.py &) &&
-                      mod_wsgi-express start-server --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"
+                      mod_wsgi-express start-server --deadlock-timeout=999 --working-directory /app --reload-on-changes /app/scrabble/wsgi.py"

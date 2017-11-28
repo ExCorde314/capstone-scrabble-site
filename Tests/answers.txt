@@ -19,4 +19,5 @@
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 33, "param1": "0", "param2": "7", "param3": "14"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 11, "param1": "0", "param2": "7", "param3": "13"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 12, "param1": "0", "param2": "7", "param3": "11"}
-{"success": true}
+{"success": true, "param2": "6,6,6,6", "word": "wAIT", "score": 9, "N": 4, "param3": "9,10,11,12", "param1": "3,2,0,1"}
+{"success": true, "param2": "7,7,7", "word": "SCOTTIes", "score": 24, "N": 3, "param3": "12,13,14", "param1": "0,1,3"}
