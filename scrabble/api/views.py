@@ -98,10 +98,13 @@ def scrabble_ai_v1(request):
                     # Once selected for a pick up - remove that location from the dict
                     del rack_dictionary[required_character][0]
                 except:
-                    # THIS SHOULD NEVER HAPPEN
-                    # MEANS THAT THE REQUIRED WORD IS NOT IN THE RACK
-                    return error_response("could not find the letter in the rack")
-
+                    # THIS CAN ONLY HAPPEN WHEN THERE ARE BLANK TILES
+                    # Try to use a blank tile if it exists
+                    try:
+                        pickup_location = rack_dictionary['?'][0]
+                        del rack_dictionary['?'][0]
+                    except:
+                        return error_response("could not find the letter in the rack")
 
                 dropoff_location = (row, col)
 
