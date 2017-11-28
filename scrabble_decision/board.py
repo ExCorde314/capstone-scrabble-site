@@ -322,6 +322,10 @@ class Board(object):
         while True:
             combinations += 1
 
+            # test!
+            if combinations == 1000:
+                break
+
             # Put together the word for this combination of letters.
             word = ""
             for i, is_used in enumerate(used):
