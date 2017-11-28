@@ -19,3 +19,4 @@
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 33, "param1": "0", "param2": "7", "param3": "14"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 11, "param1": "0", "param2": "7", "param3": "13"}
 {"success": true, "N": 1, "word": "SUNSHINE", "score": 12, "param1": "0", "param2": "7", "param3": "11"}
+{"success": true}
