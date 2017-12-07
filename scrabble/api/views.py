@@ -140,8 +140,8 @@ def scrabble_ai_v1(request):
 
 def transpose(pickup_locations, dropoff_locations_X, dropoff_locations_Y):
     matrix = [list(pickup_locations), list(dropoff_locations_X), list(dropoff_locations_Y)]
-    answer_matrix = [[],[],[]]
     N = len(pickup_locations)
+    answer_matrix = [[0] * N,[0] * N,[0] * N]
 
     row = 0
     loc = 0
