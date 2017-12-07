@@ -124,12 +124,12 @@ def scrabble_ai_v1(request):
             if N == 0:
                 return error_response("no moves to make found")
 
-            (pickup_locations1, dropoff_locations_X1, dropoff_locations_Y1) = transpose(pickup_locations,\
-            dropoff_locations_X, dropoff_locations_Y)
+            # (pickup_locations1, dropoff_locations_X1, dropoff_locations_Y1) = transpose(pickup_locations,\
+            # dropoff_locations_X, dropoff_locations_Y)
 
-            param1 = ','.join(str(e) for e in pickup_locations1)
-            param2 = ','.join(str(e) for e in dropoff_locations_X1)
-            param3 = ','.join(str(e) for e in dropoff_locations_Y1)
+            param1 = ','.join(str(e) for e in pickup_locations)
+            param2 = ','.join(str(e) for e in dropoff_locations_X)
+            param3 = ','.join(str(e) for e in dropoff_locations_Y)
 
             return robot_response(new_word, N, param1, param2, param3, score)
 
