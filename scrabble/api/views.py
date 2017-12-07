@@ -139,11 +139,7 @@ def scrabble_ai_v1(request):
         return error_response("Not a GET request")
 
 def transpose(pickup_locations, dropoff_locations_X, dropoff_locations_Y):
-    pickup_locations1 = ()
-    dropoff_locations_X1 = ()
-    dropoff_locations_Y1 = ()
-
-    matrix = [list(pickup_locations1), list(dropoff_locations_X1), list(dropoff_locations_Y1)]
+    matrix = [list(pickup_locations), list(dropoff_locations_X), list(dropoff_locations_Y)]
     answer_matrix = [[],[],[]]
     N = len(pickup_locations)
 
