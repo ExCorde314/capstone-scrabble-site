@@ -124,9 +124,12 @@ def scrabble_ai_v1(request):
             if N == 0:
                 return error_response("no moves to make found")
 
-            param1 = ','.join(str(e) for e in pickup_locations)
-            param2 = ','.join(str(e) for e in dropoff_locations_X)
-            param3 = ','.join(str(e) for e in dropoff_locations_Y)
+            (pickup_locations1, dropoff_locations_X1, dropoff_locations_Y1) = transpose(pickup_locations,\
+            dropoff_locations_X, dropoff_locations_Y)
+
+            param1 = ','.join(str(e) for e in pickup_locations1)
+            param2 = ','.join(str(e) for e in dropoff_locations_X1)
+            param3 = ','.join(str(e) for e in dropoff_locations_Y1)
 
             return robot_response(new_word, N, param1, param2, param3, score)
 
@@ -134,3 +137,26 @@ def scrabble_ai_v1(request):
             return error_response(msg["error"])
     else:
         return error_response("Not a GET request")
+
+def transpose(pickup_locations, dropoff_locations_X, dropoff_locations_Y):
+    pickup_locations1 = ()
+    dropoff_locations_X1 = ()
+    dropoff_locations_Y1 = ()
+
+    matrix = [list(pickup_locations1), list(dropoff_locations_X1), list(dropoff_locations_Y1)]
+    answer_matrix = [[],[],[]]
+    N = len(pickup_locations)
+
+    row = 0
+    loc = 0
+
+    for j in range(0, N):
+        for i in range(0, 3):
+            element = matrix[i][j]
+            answer_matrix[row][loc] = element
+            loc = loc + 1
+            if loc == N:
+                loc = 0
+                row = row + 1
+
+    return (tuple(answer_matrix[0]), tuple(answer_matrix[1]), tuple(answer_matrix[2]))
