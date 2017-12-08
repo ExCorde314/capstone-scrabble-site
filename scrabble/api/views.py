@@ -141,7 +141,7 @@ def scrabble_ai_v1(request):
         return error_response("Not a GET request")
 
 def get_blank_moves(word, pickup_locations, dropoff_locations_X, dropoff_locations_Y):
-    for count = 0
+    count = 0
     for letter in work:
         if(ord(letter) > 96):
             blank_tiles = []
