@@ -6,9 +6,10 @@ import zmq
 ###################
 # Response types
 ###################
-def robot_response(new_word, N, param1, param2, param3, score, blank_tiles):
+def robot_response(new_word, N, param1, param2, param3, score, has_blank, blank_tiles):
     return JsonResponse({"success": True, "word": new_word, \
-"N": N, "param1": param1, "param2": param2, "param3": param3, "score": score})
+"N": N, "param1": param1, "param2": param2, "param3": param3, "score": score,\
+"blank_tiles": blank_tiles, "has_blank": has_blank})
 
 def success_response(data):
     return JsonResponse({"success": True, "data": data})
@@ -127,13 +128,13 @@ def scrabble_ai_v1(request):
             # (pickup_locations1, dropoff_locations_X1, dropoff_locations_Y1) = transpose(pickup_locations,\
             # dropoff_locations_X, dropoff_locations_Y)
 
-            blank_tiles = get_blank_moves(word, pickup_locations, dropoff_locations_X, dropoff_locations_Y)
+            (has_blank, blank_tiles) = get_blank_moves(new_word, pickup_locations, dropoff_locations_X, dropoff_locations_Y)
 
             param1 = ','.join(str(e) for e in pickup_locations)
             param2 = ','.join(str(e) for e in dropoff_locations_X)
             param3 = ','.join(str(e) for e in dropoff_locations_Y)
 
-            return robot_response(new_word, N, param1, param2, param3, score, blank_tiles)
+            return robot_response(new_word, N, param1, param2, param3, score, has_blank, blank_tiles)
 
         else:
             return error_response(msg["error"])
@@ -148,7 +149,9 @@ def get_blank_moves(word, pickup_locations, dropoff_locations_X, dropoff_locatio
             blank_tiles.append(ord(letter) - 32)
             blank_tiles.append(dropoff_locations_X[count])
             blank_tiles.append(dropoff_locations_Y[count])
+            return (True, blank_tiles)
         count += 1
+    return (False, [])
 
 
 def transpose(pickup_locations, dropoff_locations_X, dropoff_locations_Y):
