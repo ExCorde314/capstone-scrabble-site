@@ -143,7 +143,7 @@ def scrabble_ai_v1(request):
 
 def get_blank_moves(word, pickup_locations, dropoff_locations_X, dropoff_locations_Y):
     count = 0
-    for letter in work:
+    for letter in word:
         if(ord(letter) > 96):
             blank_tiles = []
             blank_tiles.append(ord(letter) - 32)
